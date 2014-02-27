@@ -8,7 +8,7 @@ try{ var base = window; }catch( error ){ base = exports; }
 		function construct( ){
 			requirejs.config( {
 				"paths": {
-					"resetCSS": "/absurd-reset/reset-css"
+					"resetCSS": staticBaseURL + "/absurd-reset/reset-css"
 				}
 			} );
 
