@@ -5,8 +5,14 @@ define( "resetCSS",
 			v2.0 | 20110126
 			License: none (public domain)
 		*/
-		var style = { 
+		var style = {
+			"html": {
+				"width": "100%",
+				"height": screen.availHeight + "px"
+			},
 			"body": {
+				"width": "100%",
+				"height": "100%",
 				"line-height": 1
 			},
 			"ol, ul": {
