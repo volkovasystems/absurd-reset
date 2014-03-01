@@ -24,9 +24,12 @@ try{ var base = window; }catch( error ){ base = exports; }
 						absurd.add( resetCSS ).compile( absurdCompiler( "reset-css", chance.guid( ) ) );
 					};
 					base.absurdReset = absurdReset;
-					console.log( "absurdReset called!" );
 					contract.agree( );
 				} );
-			return contract;
+			return contract.assume( function assumption( parameters ){
+				contract.onAgree( function handler( ){
+					absurdReset.apply( null, parameters );
+				} );
+			} );
 		} );
 } )( base );

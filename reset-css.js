@@ -8,7 +8,7 @@ define( "resetCSS",
 		var style = {
 			"html": {
 				"width": "100%",
-				"height": screen.availHeight + "px"
+				"height": window.innerHeight + "px"
 			},
 			"body": {
 				"width": "100%",
