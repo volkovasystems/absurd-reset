@@ -2,11 +2,11 @@ try{ var base = window; }catch( error ){ base = exports; }
 ( function module( base ){
 	define( "absurdReset",
 		[
+			"arbiter",
 			"jquery",
 			"absurd",
 			"absurdCompiler",
-			"chance",
-			"Contract"
+			"chance"
 		],
 		function construct( ){
 			requirejs.config( {
@@ -14,7 +14,6 @@ try{ var base = window; }catch( error ){ base = exports; }
 					"resetCSS": staticBaseURL + "/absurd-reset/reset-css"
 				}
 			} );
-			var contract = new Contract( );
 			requirejs( [
 					"resetCSS"
 				],
@@ -24,12 +23,11 @@ try{ var base = window; }catch( error ){ base = exports; }
 						absurd.add( resetCSS ).compile( absurdCompiler( "reset-css", chance.guid( ) ) );
 					};
 					base.absurdReset = absurdReset;
-					contract.agree( );
+					Arbiter.publish( "module-loaded:absurd-reset", null, { "persist": true } );
 				} );
-			return contract.assume( function assumption( parameters ){
-				contract.onAgree( function handler( ){
-					absurdReset.apply( null, parameters );
-				} );
+
+			return ( function onModuleLoaded( handler ){
+				Arbiter.subscribe( "module-loaded:absurd-reset", handler );
 			} );
 		} );
 } )( base );
